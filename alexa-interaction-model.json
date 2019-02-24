@@ -1,0 +1,222 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "container engine",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "podsNumberOfIntent",
+                    "slots": [],
+                    "samples": [
+                        "pods",
+                        "how many pods are running"
+                    ]
+                },
+                {
+                    "name": "getNodesIntent",
+                    "slots": [],
+                    "samples": [
+                        "list kubernetes notes",
+                        "list notes",
+                        "list kubernetes node",
+                        "list kubernetes nodes",
+                        "list nodes",
+                        "list node",
+                        "show nodes",
+                        "show node",
+                        "show kubernetes node",
+                        "get node",
+                        "get nodes",
+                        "get kubernetes nodes",
+                        "get kubernetes node",
+                        "show kubernetes nodes"
+                    ]
+                },
+                {
+                    "name": "getNamespacesIntent",
+                    "slots": [],
+                    "samples": [
+                        "give namespaces",
+                        "give namespace",
+                        "tell namespace",
+                        "list namespace",
+                        "get namespace",
+                        "tell namespaces",
+                        "list namespaces",
+                        "get namespaces"
+                    ]
+                },
+                {
+                    "name": "getStatusUpdateIntent",
+                    "slots": [],
+                    "samples": [
+                        "daily update",
+                        "how are things",
+                        "what's up",
+                        "status update",
+                        "give me status update"
+                    ]
+                },
+                {
+                    "name": "getDeploymentsIntent",
+                    "slots": [],
+                    "samples": [
+                        "show deployments",
+                        "show deployment",
+                        "tell deployments",
+                        "tell deployment",
+                        "get deployment",
+                        "list deployment",
+                        "list deployments",
+                        "get deployments"
+                    ]
+                },
+                {
+                    "name": "scaleDeploymentIntent",
+                    "slots": [
+                        {
+                            "name": "deploymentNumber",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "Deployment number {deploymentNumber}"
+                            ]
+                        },
+                        {
+                            "name": "scaleCount",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "replica should be {scaleCount}",
+                                "count will be {scaleCount}",
+                                "it should be {scaleCount}",
+                                "new count is {scaleCount}",
+                                "new replica count is {scaleCount}",
+                                "Desired Replica count is {scaleCount}",
+                                "Desired count is {scaleCount}",
+                                "{scaleCount}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "scale",
+                        "skill",
+                        "skill deployment",
+                        "scale deployment"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "scaleDeploymentIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "deploymentNumber",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.894083358640.289779315522",
+                                "elicitation": "Elicit.Slot.1457253779892.13540155595"
+                            }
+                        },
+                        {
+                            "name": "scaleCount",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.1457253779892.1280360663808",
+                                "elicitation": "Elicit.Slot.1457253779892.1280360663808"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "SKILL_RESPONSE"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1457253779892.13540155595",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Okay. Can you give me the deployment number corresponding to your deployment?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1457253779892.1280360663808",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What should be the new replica count?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What is your desired replica count?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.1457253779892.1280360663808",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "The new desired replica count should be {scaleCount} . Is that right?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.894083358640.289779315522",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "You would like to scale your deployment number {deploymentNumber} . Is that right?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.1013610348193.1464402744623",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "That's a great idea. Should I automate your Kubernetes infrastructure provisioning?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1013610348193.1464402744623",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "abc"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.874245720961.1159039911218",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Fantastic. Should I automate your Kubernetes infrastructure provisioning?"
+                    }
+                ]
+            }
+        ]
+    }
+}
